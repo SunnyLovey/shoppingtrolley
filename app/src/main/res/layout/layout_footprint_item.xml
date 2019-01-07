@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_hot_goods"
+    >
+    <ImageView
+        android:id="@+id/footprint_masterPic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:layout_marginRight="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_5"
+        />
+     <TextView
+         android:id="@+id/footprint_commodityName"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/footprint_masterPic"
+         android:text="text"
+         android:layout_marginTop="@dimen/dp_10"
+         android:textSize="@dimen/sp_10"
+         android:textColor="#666666"
+         android:ellipsize="end"
+         />
+    <TextView
+        android:id="@+id/footprint_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/footprint_commodityName"
+        android:text="text"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/colorRed"
+        />
+    <TextView
+        android:id="@+id/footprint_browseNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/footprint_commodityName"
+        android:text="text"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textSize="@dimen/sp_10"
+        android:textColor="#666666"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_10"
+        />
+    <TextView
+        android:id="@+id/footprint_browseTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/footprint_browseNum"
+        android:text="text"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textSize="@dimen/sp_10"
+        android:textColor="#666666"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_10"
+        />
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/dp_166"
+    android:background="@drawable/shape_hot_goods"
+    android:outlineAmbientShadowColor="#666666"
+    >
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/masterPic"
+        android:layout_width="@dimen/dp_85"
+        android:layout_height="@dimen/dp_99"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        />
+    <TextView
+        android:id="@+id/commodityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="text"
+        android:layout_below="@+id/masterPic"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:textSize="@dimen/sp_12"
+        android:textColor="#666666"
+        android:ellipsize="end"
+        android:maxWidth="@dimen/dp_85"
+        android:maxLines="1"
+        android:layout_marginRight="@dimen/dp_10"
+        />
+    <TextView
+        android:id="@+id/hot_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_below="@+id/commodityName"
+        android:textColor="#ff0000"
+        android:text="text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/dp_12"
+        android:layout_marginRight="@dimen/dp_10"
+
+        />
+
+</RelativeLayout>
