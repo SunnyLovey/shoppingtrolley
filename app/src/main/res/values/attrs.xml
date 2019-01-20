@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--默认的显示的Tab数量-->
+    <attr name="default_display_counts" format="integer"/>
+    <!--高亮文本的颜色-->
+    <attr name="high_light_color" format="color"/>
+    <!--正常文本的颜色-->
+    <attr name="normal_text_color" format="color"/>
+    <!--图形的颜色-->
+    <attr name="graphics_color" format="color"/>
+    <!--文本的大小-->
+    <attr name="text_size" format="integer"/>
+    <!--图形的高度-->
+    <attr name="graphics_height" format="integer"/>
+    <!--图形的类型-->
+    <attr name="is_draw_line" format="boolean"/>
+
+    <declare-styleable name="ChangeablePagerIndicator">
+        <!--默认的显示的Tab数量-->
+        <attr name="default_display_counts"/>
+        <!--高亮文本的颜色-->
+        <attr name="high_light_color"/>
+        <!--正常文本的颜色-->
+        <attr name="normal_text_color"/>
+        <!--图形的颜色-->
+        <attr name="graphics_color"/>
+        <!--文本的大小-->
+        <attr name="text_size"/>
+        <!--图形的高度-->
+        <attr name="graphics_height"/>
+        <!--图形的类型-->
+        <attr name="is_draw_line"/>
+    </declare-styleable>
+</resources>

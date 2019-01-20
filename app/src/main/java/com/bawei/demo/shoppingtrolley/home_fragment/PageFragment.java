@@ -136,7 +136,8 @@ public class PageFragment extends BaseFragment implements IView{
         popupWindow.setFocusable(true);
         popupWindow.setTouchable(true);
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, -350);
+      //  popupWindow.showAtLocation(v, Gravity.CENTER_VERTICAL, 0, -550);
+        popupWindow.showAsDropDown(imageView_brand_more);
 
     }
 
@@ -150,8 +151,13 @@ public class PageFragment extends BaseFragment implements IView{
             @Override
             public void getPositionId(String id) {
                 searchGoods(Apis.url_two_goodsMore,id);
+
+               relative_hot.setVisibility(View.INVISIBLE);
+                relative_life.setVisibility(View.INVISIBLE);
+                relative_margic.setVisibility(View.INVISIBLE);
             }
         });
+
     }
 
     private void recyclerManger() {
@@ -308,7 +314,6 @@ public class PageFragment extends BaseFragment implements IView{
 
         recyclerHotAdapter=new RecyclerHotAdapter(getActivity());
         recyclerView_hot_goods.setAdapter(recyclerHotAdapter);
-
 
         iPresenter.startRequestGet(Apis.url_hot_goods, GoodsInfoBean.class);
     }

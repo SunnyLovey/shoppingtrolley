@@ -24,7 +24,7 @@
         />
     <EditText
         android:id="@+id/edit_login_phone"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/dp_190"
         android:layout_height="@dimen/dp_42"
         android:hint="手机号"
         android:layout_marginTop="@dimen/dp_155"
@@ -34,6 +34,7 @@
         android:textColorHint="@color/colorWhite"
         android:background="@null"
         android:textColor="@color/colorWhite"
+        android:inputType="number"
         />
     <View
         android:layout_width="@dimen/dp_300"
@@ -53,7 +54,7 @@
         />
     <EditText
         android:id="@+id/edit_login_pass"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/dp_190"
         android:layout_height="@dimen/dp_42"
         android:hint="登录密码"
         android:layout_marginTop="@dimen/dp_215"

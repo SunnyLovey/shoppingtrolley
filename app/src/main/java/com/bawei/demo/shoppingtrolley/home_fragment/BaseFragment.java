@@ -1,5 +1,7 @@
 package com.bawei.demo.shoppingtrolley.home_fragment;
 
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,5 +28,6 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected abstract void initData(View view);
+
 
 }

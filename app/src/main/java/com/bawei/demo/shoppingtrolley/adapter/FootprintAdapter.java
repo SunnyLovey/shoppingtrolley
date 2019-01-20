@@ -1,6 +1,7 @@
 package com.bawei.demo.shoppingtrolley.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.bawei.demo.shoppingtrolley.R;
 import com.bawei.demo.shoppingtrolley.bean.FootprintBean;
+import com.bawei.demo.shoppingtrolley.detailactivity.DetailActivity;
 import com.bumptech.glide.Glide;
 
 import java.text.SimpleDateFormat;
@@ -53,7 +55,7 @@ public class FootprintAdapter extends RecyclerView.Adapter<FootprintAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         viewHolder.textView_browseNum.setText("已浏览"+list.get(i).getBrowseNum()+"次");
         Glide.with(context).load(list.get(i).getMasterPic()).into(viewHolder.imageView_masterPic);
         //解密   时间
@@ -62,6 +64,14 @@ public class FootprintAdapter extends RecyclerView.Adapter<FootprintAdapter.View
 
         viewHolder.textView_commodityName.setText(list.get(i).getCommodityName());
         viewHolder.textView_price.setText("￥"+list.get(i).getPrice()+"");
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, DetailActivity.class);
+                intent.putExtra("commodityId",list.get(i).getCommodityId());
+                context.startActivity(intent);
+            }
+        });
 
     }
 

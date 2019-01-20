@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bawei.demo.shoppingtrolley.R;
 import com.bawei.demo.shoppingtrolley.bean.CircleBean;
+import com.bawei.demo.shoppingtrolley.customview.MyLayout;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -66,6 +67,7 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.ViewHolder
         viewHolder.textView_hand_count.setText(list.get(i).getGreatNum()+"");
         if(list.get(i).getWhetherGreat()==1){
             viewHolder.imageView_hand.setImageResource(R.drawable.common_btn_prise_s);
+
         }else{
             viewHolder.imageView_hand.setImageResource(R.drawable.common_btn_prise_n);
         }
@@ -75,7 +77,9 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.ViewHolder
                 if(circleCallBack!=null){
                     if(list.get(i).getWhetherGreat()==1){
                         circleCallBack.getInformation(list.get(i).getId(),list.get(i).getWhetherGreat(),i);
+
                     }else {
+                        viewHolder.myLayout.addLayout();
                         circleCallBack.getInformation(list.get(i).getId(),list.get(i).getWhetherGreat(),i);
 
                     }
@@ -117,6 +121,9 @@ public class CircleAdapter extends RecyclerView.Adapter<CircleAdapter.ViewHolder
         ImageView imageView_hand;
         @BindView(R.id.hand_count)
         TextView textView_hand_count;
+        @BindView(R.id.myLayout)
+        MyLayout myLayout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);

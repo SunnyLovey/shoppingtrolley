@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp_5"
+    android:layout_marginBottom="@dimen/dp_5"
+    android:orientation="vertical"
+    android:background="@drawable/shape_hot_goods"
+    >
+    <Button
+        android:id="@+id/shop_car_del"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_97"
+        android:background="#ff5e70"
+        android:text="删除"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp_14" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shopcar_relative"
+        >
+        <RelativeLayout
+            android:layout_width="@dimen/dp_292"
+            android:layout_height="@dimen/dp_97"
+            android:elevation="@dimen/dp_4"
+            android:padding="@dimen/dp_8"
+            android:layout_marginLeft="@dimen/dp_30"
+            >
+            <ImageView
+                android:id="@+id/image_pic"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_80"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@mipmap/ic_launcher"/>
+            <TextView
+                android:id="@+id/goods_name"
+                android:layout_toRightOf="@+id/image_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#666"
+                android:textSize="@dimen/sp_12"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="text"
+                />
+            <TextView
+                android:id="@+id/goods_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dp_14"
+                android:textColor="#ff0606"
+                android:layout_toRightOf="@id/image_pic"
+                android:layout_alignBottom="@id/image_pic"
+                android:text="text"
+                />
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+              android:layout_alignParentBottom="true"
+               android:layout_alignParentRight="true"
+               >
+               <TextView
+                   android:id="@+id/text_jian"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="-"
+                   android:textSize="@dimen/sp_20"
+                   android:textColor="#666666"
+
+                   />
+               <EditText
+                   android:id="@+id/edit_num"
+                   android:layout_width="@dimen/dp_31"
+                   android:layout_height="@dimen/dp_18"
+                   android:background="@drawable/shape_num"
+                   android:ems="3"
+                   android:inputType="number"
+                   android:gravity="center"
+                   android:layout_marginLeft="5dp"
+                   android:textSize="@dimen/sp_14"
+                   android:textColor="#666666"
+                   />
+               <TextView
+                   android:id="@+id/text_jia"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="+"
+                   android:textSize="@dimen/dp_16"
+                   android:textColor="#666666"
+                   android:layout_marginLeft="@dimen/dp_5"
+
+                   />
+           </LinearLayout>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</com.daimajia.swipe.SwipeLayout>

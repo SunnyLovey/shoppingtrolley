@@ -2,12 +2,11 @@ package com.bawei.demo.shoppingtrolley.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.view.KeyEvent;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -20,11 +19,12 @@ import android.widget.Toast;
 import com.bawei.demo.shoppingtrolley.R;
 import com.bawei.demo.shoppingtrolley.bean.LoginBean;
 import com.bawei.demo.shoppingtrolley.home_activity.HomeActivity;
-import com.bawei.demo.shoppingtrolley.home_fragment.PageFragment;
 import com.bawei.demo.shoppingtrolley.presenter.IPresenterImpl;
 import com.bawei.demo.shoppingtrolley.utils.Apis;
-import com.bawei.demo.shoppingtrolley.utils.Method;
+import com.bawei.demo.shoppingtrolley.utils.MeansUtils;
 import com.bawei.demo.shoppingtrolley.view.IView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,9 +56,9 @@ public class MainActivity extends AppCompatActivity implements IView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
         //实例化IPresenterImpl
         iPresenter=new IPresenterImpl(this);
+        ButterKnife.bind(this);
 
         //得到sharedPreferences
         sharedPreferences=getSharedPreferences("login",MODE_PRIVATE);
@@ -119,20 +119,20 @@ public class MainActivity extends AppCompatActivity implements IView{
         if(phone.equals("")){
             toast("手机号不能为空");
 
-        }else if(!Method.isPhone(phone)){
+        }else if(!MeansUtils.isPhone(phone)){
             toast("输入的手机格式不对");
         }else if(pass.equals("")){
             toast("密码不能为空");
         }
-        else if(!Method.isPass(pass)){
+        else if(!MeansUtils.isPass(pass)){
             toast("请输入6-20位的密码");
 
         }else {
-
             Map<String,String> params=new HashMap<>();
             params.put("phone",phone);
             params.put("pwd",pass);
-          iPresenter.startRequest(Apis.url_login,params, LoginBean.class);
+            iPresenter.startRequest(Apis.url_login,params, LoginBean.class);
+
         }
 
     }
@@ -160,25 +160,29 @@ public class MainActivity extends AppCompatActivity implements IView{
     @Override
     public void requestSuccess(Object data) {
               LoginBean bean= (LoginBean) data;
+        if(bean.getStatus().equals("1001")){
+            toast(bean.getMessage());
+        }
         int userId = bean.getResult().getUserId();
         String sessionId = bean.getResult().getSessionId();
+        String nickName = bean.getResult().getNickName();
+      //  Log.i("TAG",userId+"-----------"+sessionId);
         //将值存入sharedPreferences
         editor.putString("userId",userId+"");
         editor.putString("sessionId",sessionId);
+        editor.putString("nickName",nickName);
         editor.commit();
         if(bean.getStatus().equals("0000")){
                   toast(bean.getMessage());
                   Intent intent=new Intent(MainActivity.this,HomeActivity.class);
                   startActivity(intent);
                   finish();
-              }else {
-                  toast(bean.getMessage());
               }
     }
 //请求失败
     @Override
     public void requestFail(String error) {
-        toast(error);
+       // toast(error);
     }
 
 

@@ -3,17 +3,24 @@ package com.bawei.demo.shoppingtrolley.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.bawei.demo.shoppingtrolley.app.MyApplication;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -24,13 +31,15 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import rx.Observable;
 import rx.Observer;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class RetrofitUtils {
     private static  RetrofitUtils instance;
     private OkHttpClient client;
-    private final String BASE_URL="http://172.17.8.100/small/";
+   // private final String BASE_URL="http://172.17.8.100/small/";
+    private final String BASE_URL="http://mobile.bwstudent.com/small/";
     private BaseApis baseApis;
     //创建单例
     public static RetrofitUtils getInstance(){
@@ -110,6 +119,66 @@ public class RetrofitUtils {
                 .subscribe(getObserver(httpCallBack));
         return instance;
     }
+
+    public static MultipartBody filesToMultipartBody(Map<String,String> map) {
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            File file = new File(entry.getValue());
+            builder.addFormDataPart(entry.getKey(), "图片1.png",
+                    RequestBody.create(MediaType.parse("multipart/form-data"), file));
+        }
+        builder.setType(MultipartBody.FORM);
+        MultipartBody multipartBody = builder.build();
+        return multipartBody;
+    }
+
+    public void postFile(String url, Map<String, String> map,HttpCallBack httpCallBack) {
+        if (map == null) {
+            map = new HashMap<>();
+        }
+        MultipartBody multipartBody = filesToMultipartBody(map);
+
+        baseApis.postFile(url, multipartBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getObserver(httpCallBack));
+
+    }
+
+
+    //put请求
+    public RetrofitUtils putRequest(String url, Map<String,String> map,HttpCallBack httpCallBack){
+        if(map==null){
+            map=new HashMap<>();
+        }
+        baseApis.putRequest(url,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getObserver(httpCallBack));
+        return instance;
+    }
+
+    //多图文上传
+    public  RetrofitUtils postduocon(String url, Map<String,String> params, List<File> list, HttpCallBack httpCallBack){
+        MultipartBody.Part[] parts=new MultipartBody.Part[list.size()];
+        int index=0;
+        for (File file: list){
+            RequestBody requestBody=RequestBody.create(MediaType.parse("multipart/form-data"),file);
+            MultipartBody.Part filePart=MultipartBody.Part.createFormData("image",file.getName(),requestBody);
+            parts[index]=filePart;
+            index++;
+        }
+
+        baseApis.postDuoContent(url,params,parts)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getObserver(httpCallBack));
+
+        return instance;
+
+    }
+
 
     private Observer getObserver(final HttpCallBack callBack) {
         Observer observer=new Observer<ResponseBody>() {

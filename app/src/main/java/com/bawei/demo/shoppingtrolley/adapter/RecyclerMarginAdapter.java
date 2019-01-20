@@ -1,6 +1,7 @@
 package com.bawei.demo.shoppingtrolley.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.bawei.demo.shoppingtrolley.R;
 import com.bawei.demo.shoppingtrolley.bean.GoodsInfoBean;
+import com.bawei.demo.shoppingtrolley.detailactivity.DetailActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
@@ -40,10 +42,18 @@ public class RecyclerMarginAdapter extends RecyclerView.Adapter<RecyclerMarginAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         viewHolder.textView_name.setText(list.get(i).getCommodityName());
         viewHolder.textView_price.setText("￥"+list.get(i).getPrice()+".00");
         viewHolder.simpleDraweeView.setImageURI(list.get(i).getMasterPic());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, DetailActivity.class);
+                intent.putExtra("commodityId",list.get(i).getCommodityId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

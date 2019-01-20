@@ -6,28 +6,27 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.RadioGroup;
 
 import com.bawei.demo.shoppingtrolley.R;
+import com.bawei.demo.shoppingtrolley.customview.CustomViewPager;
 import com.bawei.demo.shoppingtrolley.home_fragment.BaseFragment;
 import com.bawei.demo.shoppingtrolley.home_fragment.CircleFragment;
 import com.bawei.demo.shoppingtrolley.home_fragment.MyFragment;
 import com.bawei.demo.shoppingtrolley.home_fragment.OrderFragment;
 import com.bawei.demo.shoppingtrolley.home_fragment.PageFragment;
-import com.bawei.demo.shoppingtrolley.home_fragment.ShoppingFragment;
+import com.bawei.demo.shoppingtrolley.shoppingcar.ShoppingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnPageChange;
 
 public class HomeActivity extends AppCompatActivity {
     //获取资源ID
     @BindView(R.id.home_viewpager)
-    ViewPager viewPager;
+    CustomViewPager viewPager;
     @BindView(R.id.home_group)
     RadioGroup radioGroup;
     private List<BaseFragment> list;

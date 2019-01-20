@@ -4,12 +4,18 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.os.StrictMode;
+import android.support.annotation.RequiresApi;
 import android.view.WindowManager;
 
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.goyourfly.multi_picture.ImageLoader;
+import com.goyourfly.multi_picture.MultiPictureView;
 
 public class MyApplication extends Application {
     //绘制页面时参照的设计图宽度
@@ -18,6 +24,7 @@ public class MyApplication extends Application {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onCreate() {
         super.onCreate();
@@ -31,7 +38,14 @@ public class MyApplication extends Application {
                 .setMainDiskCacheConfig(diskCacheConfig)
                 .build();
         Fresco.initialize(this,config);
+
         resetDensity();
+
+       // android 7.0系统解决拍照的问题
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        builder.detectFileUriExposure();
+
 
     }
     @Override

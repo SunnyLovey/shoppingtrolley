@@ -3,15 +3,19 @@ package com.bawei.demo.shoppingtrolley.activity;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.bawei.demo.shoppingtrolley.R;
 import com.bawei.demo.shoppingtrolley.SpacesItemDecoration;
 import com.bawei.demo.shoppingtrolley.adapter.FootprintAdapter;
+import com.bawei.demo.shoppingtrolley.allordersfragment.OrderGoodsAdapter;
 import com.bawei.demo.shoppingtrolley.bean.FootprintBean;
 import com.bawei.demo.shoppingtrolley.presenter.IPresenterImpl;
 import com.bawei.demo.shoppingtrolley.utils.Apis;
+import com.bawei.demo.shoppingtrolley.utils.MeansUtils;
 import com.bawei.demo.shoppingtrolley.view.IView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -19,7 +23,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/*
+* author:zhangjing
+* 我的足迹
+* time:20190111
+* */
 public class FootprintActivity extends AppCompatActivity implements IView{
     @BindView(R.id.footprint_xrecyclerview)
     XRecyclerView xRecyclerView_footprint;
@@ -36,8 +44,10 @@ public class FootprintActivity extends AppCompatActivity implements IView{
         //实例化
         iPresenter=new IPresenterImpl(this);
         StaggeredGridLayoutManager manager=new StaggeredGridLayoutManager(lineCounts,StaggeredGridLayoutManager.VERTICAL);
+       /* GridLayoutManager manager=new GridLayoutManager(this,lineCounts);
+        manager.setOrientation(OrientationHelper.VERTICAL);*/
         xRecyclerView_footprint.setLayoutManager(manager);
-        int spacingInPixels = 20;
+        int spacingInPixels = 10;
         xRecyclerView_footprint.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
         adapter=new FootprintAdapter(this);
         xRecyclerView_footprint.setAdapter(adapter);
@@ -82,7 +92,7 @@ public class FootprintActivity extends AppCompatActivity implements IView{
 
     @Override
     public void requestFail(String error) {
-
+        MeansUtils.toast(error);
     }
 
     @Override

@@ -9,13 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bawei.demo.shoppingtrolley.R;
-import com.bawei.demo.shoppingtrolley.activity.DetailActivity;
 import com.bawei.demo.shoppingtrolley.bean.GoodsInfoBean;
-import com.bawei.demo.shoppingtrolley.eventbusbean.MessageBean;
-import com.bawei.demo.shoppingtrolley.utils.FlagNum;
+import com.bawei.demo.shoppingtrolley.detailactivity.DetailActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,10 +50,9 @@ public class RecyclerHotAdapter extends RecyclerView.Adapter<RecyclerHotAdapter.
              viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                     EventBus.getDefault().post(new MessageBean(FlagNum.HOT_NUM,list.get(i).getCommodityId()));
                      Intent intent=new Intent(context, DetailActivity.class);
+                     intent.putExtra("commodityId",list.get(i).getCommodityId());
                      context.startActivity(intent);
-
                  }
              });
 

@@ -1,6 +1,8 @@
 package com.bawei.demo.shoppingtrolley.bean;
 
-public class DetailBean {
+import java.io.Serializable;
+
+public class DetailBean implements Serializable{
     private ResultBean result;
     private String message;
     private String status;
@@ -29,7 +31,7 @@ public class DetailBean {
         this.status = status;
     }
 
-    public static class ResultBean {
+    public static class ResultBean implements Serializable{
         private String categoryId;
         private String categoryName;
         private int commentNum;
@@ -42,6 +44,15 @@ public class DetailBean {
         private int saleNum;
         private int stock;
         private int weight;
+        private boolean isCheck;
+
+        public boolean isCheck() {
+            return isCheck;
+        }
+
+        public void setCheck(boolean check) {
+            isCheck = check;
+        }
 
         public String getCategoryId() {
             return categoryId;

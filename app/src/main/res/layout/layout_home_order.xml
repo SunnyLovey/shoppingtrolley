@@ -2,7 +2,97 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffcc"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_120"
+        android:layout_marginTop="@dimen/dp_40"
+        android:background="@drawable/shape_hot_goods"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_20"
+        >
+
+        <RadioGroup
+            android:id="@+id/group_divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp_20"
+            >
+
+            <RadioButton
+                android:id="@+id/image_allorders"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:background="@drawable/quanbudd_ddf"
+                android:button="@null"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:checked="true"
+                />
+
+            <RadioButton
+                android:id="@+id/image_obligation"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:background="@drawable/daifuk_ddf"
+                android:button="@null" />
+
+            <RadioButton
+                android:id="@+id/image_forCollection"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:background="@drawable/daishouh_ddf"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:button="@null" />
+
+            <RadioButton
+                android:id="@+id/image_beevaluated"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:background="@drawable/daipingj_ddf"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:button="@null" />
+
+            <RadioButton
+                android:id="@+id/image_completed"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="@dimen/dp_20"
+                android:background="@drawable/yiwanc_ddf"
+                android:layout_marginLeft="@dimen/dp_18"
+                android:button="@null" />
+        </RadioGroup>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/bill_TabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentBottom="true"
+            app:tabIndicatorColor="@color/colorYellow"
+            app:tabSelectedTextColor="@color/colorAccent"
+            android:layout_marginTop="@dimen/dp_9"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            app:tabMaxWidth="@dimen/dp_0"
+            app:tabPaddingStart="-1dp"
+            app:tabPaddingEnd="-1dp"
+            app:tabPaddingTop="-1dp"
+            />
+    </LinearLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/order_viewpager"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
+

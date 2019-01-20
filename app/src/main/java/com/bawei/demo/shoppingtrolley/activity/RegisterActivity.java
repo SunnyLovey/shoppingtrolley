@@ -1,14 +1,12 @@
 package com.bawei.demo.shoppingtrolley.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,10 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bawei.demo.shoppingtrolley.R;
+import com.bawei.demo.shoppingtrolley.bean.LoginBean;
 import com.bawei.demo.shoppingtrolley.bean.RegisterBean;
 import com.bawei.demo.shoppingtrolley.presenter.IPresenterImpl;
 import com.bawei.demo.shoppingtrolley.utils.Apis;
-import com.bawei.demo.shoppingtrolley.utils.Method;
+import com.bawei.demo.shoppingtrolley.utils.MeansUtils;
 import com.bawei.demo.shoppingtrolley.view.IView;
 
 import java.util.HashMap;
@@ -29,7 +28,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
-import okhttp3.internal.cache.DiskLruCache;
 
 public class RegisterActivity extends AppCompatActivity implements IView{
     //获取资源ID
@@ -100,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity implements IView{
         if(phone.equals("")){
             toast("手机号不能为空");
 
-        }else if(!Method.isPhone(phone)){
+        }else if(!MeansUtils.isPhone(phone)){
             toast("输入的手机格式不对");
         }else if(code.equals("")){
             toast("验证码不能为空");
@@ -111,7 +109,7 @@ public class RegisterActivity extends AppCompatActivity implements IView{
         }else if(pass.equals("")){
             toast("密码不能为空");
         }
-        else if(!Method.isPass(pass)){
+        else if(!MeansUtils.isPass(pass)){
             toast("请输入6-20位的密码");
 
         }
@@ -124,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity implements IView{
     }
     //获取验证码
     public void getCode(){
-        random = Method.getRandom();
+        random = MeansUtils.getRandom();
        toast(random);
     }
 
@@ -134,6 +132,7 @@ public class RegisterActivity extends AppCompatActivity implements IView{
        RegisterBean bean= (RegisterBean) data;
        if(bean.getStatus().equals("0000")){
            toast(bean.getMessage());
+           finish();
        }else {
            toast(bean.getMessage());
        }

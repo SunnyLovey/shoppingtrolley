@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".home_activity.HomeActivity">
-    <android.support.v4.view.ViewPager
+    <com.bawei.demo.shoppingtrolley.customview.CustomViewPager
         android:id="@+id/home_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/dp_40"
-        ></android.support.v4.view.ViewPager>
+        android:layout_marginBottom="@dimen/dp_60"></com.bawei.demo.shoppingtrolley.customview.CustomViewPager>
     <RadioGroup
         android:id="@+id/home_group"
         android:layout_width="match_parent"
